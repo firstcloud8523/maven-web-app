@@ -1,7 +1,7 @@
 node{
     
     stage('Clone repo'){
-        git credentialsId: 'GIT-Credentials', url: 'https://github.com/ashokitschool/maven-web-app.git'
+        git credentialsId: 'GIT-Credentials', url: 'https://github.com/firstcloud8523/maven-web-app.git'
     }
     
     stage('Maven Build'){
@@ -26,23 +26,23 @@ node{
 			]	
 		],
 		credentialsId: 'nexus3',
-		groupId: 'in.ashokit',
+		groupId: 'in.firstcloud',
 		nexusUrl: '',
 		protocol: 'http',
-		repository: 'ashokit-release'
+		repository: 'firstcloud-release'
 		version: '1.0.0'
 	}
 }
     
     stage('Build Image'){
-        sh 'docker build -t ashokit/mavenwebapp .'
+        sh 'docker build -t firstcloud8523/mavenwebapp .'
     }
     
     stage('Push Image'){
         withCredentials([string(credentialsId: 'DOCKER-CREDENTIALS', variable: 'DOCKER_CREDENTIALS')]) {
-            sh 'docker login -u ashokit -p ${DOCKER_CREDENTIALS}'
+            sh 'docker login -u firstcloud8523 -p ${DOCKER_CREDENTIALS}'
         }
-        sh 'docker push ashokit/mavenwebapp'
+        sh 'docker push firstcloud8523/mavenwebapp'
     }
     
     stage('Deploy App'){
