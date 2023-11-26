@@ -1,7 +1,7 @@
 node{
     
     stage('Clone repo'){
-        git credentialsId: 'GIT-Credentials', url: 'https://github.com/firstcloud8523/maven-web-app.git'
+        git credentialsId: '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', url: 'https://github.com/firstcloud8523/maven-web-app.git'
     }
     
     stage('Maven Build'){
